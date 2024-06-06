@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/gray"
+    tools:context=".Activities.AddMoney">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="center"
+        android:background="@color/main_color"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/_10mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/goBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/arrow_back_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10mdp"
+            android:layout_weight="1"
+            android:text="My Wallet"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14font_mdp"
+            android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/contactUs"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="@dimen/_10mdp"
+            android:layout_marginEnd="@dimen/_5mdp"
+            android:src="@drawable/whatsapp" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10mdp"
+                android:background="@drawable/back_border_gray"
+                android:elevation="@dimen/_5mdp"
+                android:orientation="vertical"
+                android:padding="@dimen/_10mdp">
+
+                <TextView
+                    android:id="@+id/currentBalance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/wallet_16"
+                    android:drawablePadding="@dimen/_5mdp"
+                    android:drawableTint="@color/blue_purple"
+                    android:text="Current Balance: ₹0"
+                    android:textColor="@color/blue_purple"
+                    android:textSize="@dimen/_14font_mdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:text="Profile Id"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12font_mdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/profId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/copy_16"
+                    android:drawablePadding="@dimen/_5mdp"
+                    android:text="-"
+                    android:textSize="@dimen/_12font_mdp" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:elevation="@dimen/_5mdp"
+                android:paddingTop="@dimen/_5mdp"
+                android:paddingBottom="@dimen/_10mdp"
+                android:background="@color/white">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15mdp"
+                    android:layout_marginTop="@dimen/_5mdp"
+                    android:text="Add Money Using"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10mdp"
+                    android:layout_marginEnd="@dimen/_10mdp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/upiSec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Using UPI"
+                        android:textColor="@color/black" />
+
+                    <RadioButton
+                        android:id="@+id/qrSec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10mdp"
+                        android:text="Using QR Code"
+                        android:textColor="@color/black" />
+                </RadioGroup>
+
+                <LinearLayout
+                    android:id="@+id/upiSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/upiImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10mdp"
+                        android:layout_marginTop="@dimen/_5mdp"
+                        android:layout_marginEnd="@dimen/_10mdp"
+                        android:background="@drawable/bg_white_color_corner8"
+                        android:elevation="@dimen/_5mdp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:src="@drawable/upi" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/payNow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10mdp"
+                        android:layout_marginTop="@dimen/_15mdp"
+                        android:layout_marginEnd="@dimen/_10mdp"
+                        android:background="@drawable/click_effect_green"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_10mdp"
+                        android:paddingTop="@dimen/_5mdp"
+                        android:paddingEnd="@dimen/_10mdp"
+                        android:paddingBottom="@dimen/_5mdp"
+                        android:text="Add Money"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12font_mdp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/QrSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_10mdp"
+                        android:layout_marginTop="@dimen/_10mdp"
+                        android:layout_marginEnd="@dimen/_10mdp"
+                        android:background="@drawable/bg_white_color_corner8"
+                        android:elevation="@dimen/_5mdp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/_165mdp"
+                            android:layout_height="@dimen/_165mdp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/paytm_qr" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_35mdp"
+                        android:layout_marginTop="@dimen/_10mdp"
+                        android:layout_marginEnd="@dimen/_35mdp"
+                        android:gravity="center"
+                        android:text="@string/qr_message"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/_12font_mdp"
+                        android:textStyle="italic" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

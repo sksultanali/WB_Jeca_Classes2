@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+<!--    <color name="main_color">#090401</color>-->
+<!--    <color name="main_2nd">#f05c06</color>-->
+
+    <color name="main_color">#8b0000</color>
+    <color name="main_2nd">#ff4500</color>
+
+    <color name="red">#F44336</color>
+    <color name="yellow">#FF9800</color>
+
+
+    <color name="icon_color">#757272</color>
+    <color name="transparentColor" >#00FFFFFF</color>
+    <color name="blue_purple">#3F51B5</color>
+
+    <color name="gray">#eff2f7</color>
+    <color name="darkGray">#D5D7DC</color>
+    <color name="linkBack">#e9e6df</color>
+    <color name="greenDark">#007E05</color>
+
+
+
+</resources>

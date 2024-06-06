@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/linearLayout2"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/gray"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:padding="@dimen/_10mdp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@color/main_color"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:id="@+id/menuBtn"
+            android:orientation="horizontal">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/myImg"
+                android:layout_width="@dimen/_30mdp"
+                android:layout_height="@dimen/_30mdp"
+                android:src="@drawable/logo"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10mdp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textSize="@dimen/_14font_mdp"
+                android:text="LS His Tutorial"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SEM"
+            android:textSize="@dimen/_10font_mdp"
+            android:textStyle="bold"
+            android:paddingStart="@dimen/_10mdp"
+            android:paddingEnd="@dimen/_10mdp"
+            android:paddingTop="@dimen/_5mdp"
+            android:drawableTint="@color/black"
+            android:drawableStart="@drawable/filter_list_16"
+            android:drawablePadding="@dimen/_5mdp"
+            android:paddingBottom="@dimen/_5mdp"
+            android:background="@drawable/click_effect_white_gray"
+            android:textColor="@color/black"
+            android:textAllCaps="true"/>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/image_slider"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:layout_marginTop="@dimen/_10mdp"
+                android:paddingLeft="@dimen/_10mdp"
+                android:paddingRight="@dimen/_10mdp"
+                android:elevation="@dimen/_5mdp"
+                app:iss_auto_cycle="true"
+                app:iss_corner_radius="20"
+                app:iss_delay="0"
+                app:iss_error_image="@drawable/book_placeholder"
+                app:iss_period="2000"
+                app:iss_placeholder="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view3"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10mdp"
+                android:background="@drawable/text_background"
+                android:paddingStart="@dimen/_10mdp"
+                android:paddingTop="@dimen/_2mdp"
+                android:paddingBottom="@dimen/_2mdp"
+                android:layout_marginBottom="@dimen/_10mdp"
+                android:paddingEnd="@dimen/_5mdp"
+                android:text="Useful Tools"
+                android:textSize="@dimen/_11font_mdp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
+
+            <LinearLayout
+                android:id="@+id/profileSegment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back_border_gray"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:layout_marginStart="@dimen/_10mdp"
+                android:layout_marginEnd="@dimen/_10mdp"
+                android:layout_marginBottom="@dimen/_10mdp"
+                android:visibility="visible"
+                android:gravity="center_vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/discoverProfileName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name"
+                        android:textSize="@dimen/_12font_mdp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/profileMail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/_11font_mdp"
+                        android:text="email"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:drawableTint="@color/main_2nd"
+                    android:textColor="@color/main2_2nd"
+                    android:drawablePadding="2dp"
+                    android:visibility="gone"
+                    android:textSize="@dimen/_12font_mdp"
+                    android:drawableStart="@drawable/rupee_16"
+                    android:layout_marginEnd="15dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/notificationLin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="5dp"
+                    android:background="@drawable/oval_home_click_effect"
+                    android:padding="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        app:tint="@color/icon_color"
+                        android:src="@drawable/notifications_24"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <GridView
+                    android:id="@+id/tools_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="4"
+                    android:verticalSpacing="@dimen/_5mdp"
+                    android:horizontalSpacing="@dimen/_5mdp"
+                    android:layout_marginStart="@dimen/_10mdp"
+                    android:layout_marginEnd="@dimen/_10mdp"
+                    tools:listitem="@layout/sample_tools"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10mdp"
+                    android:background="@drawable/text_background"
+                    android:paddingStart="@dimen/_10mdp"
+                    android:paddingEnd="@dimen/_5mdp"
+                    android:paddingTop="@dimen/_2mdp"
+                    android:paddingBottom="@dimen/_2mdp"
+                    android:text="Topper's Book"
+                    android:textSize="@dimen/_11font_mdp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar5"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_marginTop="@dimen/_35mdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/books"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/child_book"
+                    android:layout_margin="@dimen/_5mdp"/>
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/no_data"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:layout_gravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:lottie_autoPlay="true"
+                    android:visibility="gone"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/no_data" />
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

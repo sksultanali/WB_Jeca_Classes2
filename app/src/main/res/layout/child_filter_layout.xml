@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/gray"
+    android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/filterImg"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:rotation="90"
+        android:layout_gravity="center"
+        app:tint="@color/icon_color"
+        android:layout_marginStart="@dimen/_10mdp"
+        android:src="@drawable/filter_24"/>
+    <TextView
+        android:id="@+id/textFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="fdfdsf"
+        android:padding="10dp"
+        android:textSize="@dimen/_12font_mdp"/>
+</LinearLayout>

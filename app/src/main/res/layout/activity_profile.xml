@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/gray"
+    tools:context=".Activities.ProfileActivity">
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center"
+        android:padding="@dimen/_10mdp"
+        android:background="@color/main_color"
+        android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/goBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/arrow_back_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10mdp"
+            android:layout_weight="1"
+            android:text="Profile"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14font_mdp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:paddingStart="@dimen/_10mdp"
+            android:paddingEnd="@dimen/_10mdp"
+            android:paddingTop="@dimen/_5mdp"
+            android:drawableTint="@color/icon_color"
+            android:drawableStart="@drawable/login_16"
+            android:drawablePadding="@dimen/_5mdp"
+            android:paddingBottom="@dimen/_5mdp"
+            android:background="@drawable/click_effect_white_gray"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/logOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:paddingStart="@dimen/_10mdp"
+            android:visibility="gone"
+            android:paddingEnd="@dimen/_10mdp"
+            android:paddingTop="@dimen/_5mdp"
+            android:drawableTint="@color/icon_color"
+            android:drawableEnd="@drawable/logout_16"
+            android:drawablePadding="@dimen/_5mdp"
+            android:paddingBottom="@dimen/_5mdp"
+            android:background="@drawable/click_effect_white_gray"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/profileSegment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10mdp"
+        android:padding="@dimen/_10mdp"
+        android:background="@drawable/back_border_gray"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/discoverProfileName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LS His Tutorial"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/profileMail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="lshistutorial@gmail.com"/>
+            <TextView
+                android:id="@+id/sem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""/>
+            <TextView
+                android:id="@+id/money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:drawableTint="@color/white"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/_5mdp"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:paddingStart="@dimen/_5mdp"
+                android:paddingEnd="@dimen/_5mdp"
+                android:background="@drawable/bg_blue_purple_corners"
+                android:drawablePadding="2dp"
+                android:drawableStart="@drawable/rupee_16"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profImage"
+            android:layout_width="@dimen/_55mdp"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/text_background"
+        android:paddingStart="@dimen/_10mdp"
+        android:layout_marginBottom="@dimen/_10mdp"
+        android:paddingEnd="@dimen/_5mdp"
+        android:paddingTop="@dimen/_2mdp"
+        android:paddingBottom="@dimen/_2mdp"
+        android:text="Useful Tools"
+        android:textSize="@dimen/_11font_mdp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <GridView
+            android:id="@+id/tools_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="4"
+            android:verticalSpacing="@dimen/_5mdp"
+            android:horizontalSpacing="@dimen/_5mdp"
+            android:layout_marginStart="@dimen/_10mdp"
+            android:layout_marginEnd="@dimen/_10mdp"
+            tools:listitem="@layout/sample_tools"/>
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

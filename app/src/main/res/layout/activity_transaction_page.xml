@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".Activities.TransactionPage">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/no_data"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        android:visibility="visible"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/transa" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_green_corner"
+        android:paddingStart="@dimen/_10mdp"
+        android:paddingTop="@dimen/_5mdp"
+        android:paddingEnd="@dimen/_10mdp"
+        android:paddingBottom="@dimen/_5mdp"
+        android:layout_marginTop="@dimen/_10mdp"
+        android:text="Transaction Successful"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12font_mdp"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_25mdp"
+        android:text="Transaction Id"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12font_mdp"/>
+    <TextView
+        android:id="@+id/transactionId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/_12font_mdp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5mdp"
+        android:text="Date and Time"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12font_mdp"/>
+    <TextView
+        android:id="@+id/dateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/_12font_mdp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_blue_purple_corners"
+        android:paddingStart="@dimen/_10mdp"
+        android:paddingTop="@dimen/_5mdp"
+        android:paddingEnd="@dimen/_10mdp"
+        android:paddingBottom="@dimen/_5mdp"
+        android:layout_marginTop="@dimen/_15mdp"
+        android:text="Book Added to Profile Section"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12font_mdp"/>
+
+</LinearLayout>
