@@ -4,6 +4,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentTransaction;
@@ -21,6 +22,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -97,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
     Activity activity;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add(new ToolsModel("My Books", getDrawable(R.drawable.digital_library)));
         arrayList.add(new ToolsModel("Coupons", getDrawable(R.drawable.coupon)));
         arrayList.add(new ToolsModel("Options", getDrawable(R.drawable.menubar)));
+
+        Toast.makeText(activity, "thisupdate", Toast.LENGTH_SHORT).show();
 
         myListAdapter adapter = new myListAdapter();
         binding.toolsList.setAdapter(adapter);
