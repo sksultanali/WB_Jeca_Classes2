@@ -13,8 +13,8 @@ android {
         applicationId "com.developerali.lshistutorial"
         minSdk 19
         targetSdk 34
-        versionCode 12   //9
-        versionName "2.0.1"  //1.9
+        versionCode 13   //9
+        versionName "2.1.1"  //1.9
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -99,5 +99,9 @@ dependencies {
     implementation 'com.razorpay:checkout:1.6.38'
     implementation 'com.google.android.play:app-update:2.1.0'
     implementation 'com.android.support:multidex:1.0.3'
+
+    implementation 'com.google.android.gms:play-services-location:21.2.0'
+    implementation 'com.google.android.gms:play-services-maps:18.2.0'
+    implementation 'com.karumi:dexter:6.2.2'
 
 }

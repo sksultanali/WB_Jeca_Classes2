@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.ColorDrawable;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.provider.Settings;
@@ -102,6 +103,12 @@ public class Helper {
     public static boolean isConnectedNetwork (Context context){
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting();
+    }
+    public static boolean isLocationEnabled(Activity activity) {
+        LocationManager locationManager = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
+        boolean isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        return isGpsEnabled || isNetworkEnabled;
     }
 
     @SuppressLint("ResourceAsColor")

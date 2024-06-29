@@ -46,7 +46,7 @@ public class ReadBook extends AppCompatActivity {
         setContentView(binding.getRoot());
         data = FirebaseDatabase.getInstance();
         auth =FirebaseAuth.getInstance();
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
         binding.progressBar4.setVisibility(View.VISIBLE);
 

