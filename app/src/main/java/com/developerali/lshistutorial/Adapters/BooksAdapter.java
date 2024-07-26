@@ -2,19 +2,16 @@ package com.developerali.lshistutorial.Adapters;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.denzcoskun.imageslider.constants.ScaleTypes;
-import com.denzcoskun.imageslider.models.SlideModel;
 import com.developerali.lshistutorial.Activities.DetailedActivity;
 import com.developerali.lshistutorial.Activities.ReadBook;
 import com.developerali.lshistutorial.Helper;
@@ -22,18 +19,9 @@ import com.developerali.lshistutorial.Models.BooksModel;
 import com.developerali.lshistutorial.R;
 import com.developerali.lshistutorial.databinding.ChildBookBinding;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
-import com.smarteist.autoimageslider.SliderAnimations;
-import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
-
-import io.grpc.okhttp.internal.framed.Header;
 
 public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder>{
 
