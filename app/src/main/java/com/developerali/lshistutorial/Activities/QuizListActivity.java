@@ -59,18 +59,24 @@ public class QuizListActivity extends AppCompatActivity {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()){
-                            arrayList.clear();
-                            for (DataSnapshot data : snapshot.getChildren()){
-                                QuizModel quizModel = data.getValue(QuizModel.class);
-                                arrayList.add(quizModel);
+                        try {
+                            if (snapshot.exists()){
+                                arrayList.clear();
+                                for (DataSnapshot data : snapshot.getChildren()){
+                                    QuizModel quizModel = data.getValue(QuizModel.class);
+                                    if (quizModel != null){
+                                        arrayList.add(quizModel);
+                                    }
+                                }
+                                binding.progressBar2.setVisibility(View.GONE);
+                                binding.noData.setVisibility(View.GONE);
+                                adapter.notifyDataSetChanged();
+                            }else {
+                                binding.progressBar2.setVisibility(View.GONE);
+                                binding.noData.setVisibility(View.VISIBLE);
                             }
-                            binding.progressBar2.setVisibility(View.GONE);
-                            binding.noData.setVisibility(View.GONE);
-                            adapter.notifyDataSetChanged();
-                        }else {
-                            binding.progressBar2.setVisibility(View.GONE);
-                            binding.noData.setVisibility(View.VISIBLE);
+                        }catch (Exception e){
+
                         }
                     }
 
