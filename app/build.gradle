@@ -13,8 +13,8 @@ android {
         applicationId "com.developerali.lshistutorial"
         minSdk 24
         targetSdk 34
-        versionCode 16   //9
-        versionName "2.1.4"  //1.9
+        versionCode 17   //17
+        versionName "2.1.5"  //2.1.5
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

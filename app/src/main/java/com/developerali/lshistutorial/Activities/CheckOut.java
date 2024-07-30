@@ -22,6 +22,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -173,6 +175,32 @@ public class CheckOut extends AppCompatActivity implements PaymentResultWithData
                     hideKeyboard();
                 }
             }
+        });
+
+        binding.ccEdText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String CC = binding.ccEdText.getText().toString();
+                if (CC.isEmpty()){
+                    binding.removeCuppon.setVisibility(View.GONE);
+                }else {
+                    binding.removeCuppon.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        binding.goBack.setOnClickListener(v->{
+            onBackPressed();
         });
 
         fireStore.collection("key")

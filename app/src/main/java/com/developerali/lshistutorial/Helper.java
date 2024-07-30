@@ -153,4 +153,28 @@ public class Helper {
         dialog.show();
     }
 
+    @SuppressLint("ResourceAsColor")
+    public static void showLoginDialog(Activity activity, String title, String content) {
+        CustomDialogBinding dialogBinding = CustomDialogBinding.inflate(LayoutInflater.from(activity));
+
+        AlertDialog dialog = new AlertDialog.Builder(activity)
+                .setView(dialogBinding.getRoot())
+                .create();
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.R.color.transparent));
+
+        dialogBinding.titleText.setText(title);
+        dialogBinding.messageText.setText(content);
+
+        dialogBinding.yesBtnText.setText("Okay");
+
+        dialogBinding.noBtn.setVisibility(View.GONE);
+
+        dialogBinding.loginBtn.setOnClickListener(v->{
+            dialog.dismiss();
+        });
+
+        dialog.show();
+    }
+
 }

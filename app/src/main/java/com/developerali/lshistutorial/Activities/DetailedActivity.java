@@ -80,11 +80,16 @@ public class DetailedActivity extends AppCompatActivity {
             if (auth.getCurrentUser() == null){
                 showLoginDialog();
             }else {
-                String message = "Hi, I "+ Helper.My_Name +", found a book on LS His Tutorial. And have some query. Should we talk now? \n\n"+
-                        "Book Link- https://www.goldenheight.in/" + id;
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse("http://api.whatsapp.com/send?phone=" + "+91" + "8967254087" + "&text=" + message));
-                startActivity(i);
+                try {
+                    String message = "Hi, I "+ Helper.My_Name +", found a book on LS His Tutorial. And have some query. Should we talk now? \n\n"+
+                            "Book Link- https://www.goldenheight.in/" + id;
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse("http://api.whatsapp.com/send?phone=" + "+91" + "8967254087" + "&text=" + message));
+                    startActivity(i);
+                }catch (Exception e){
+                    Helper.showLoginDialog(DetailedActivity.this, "Only Whatsapp",
+                            "We are available only on whatsapp now. Please make sure you have installed whatsapp to conntact us.\nThank you..!");
+                }
             }
         });
 

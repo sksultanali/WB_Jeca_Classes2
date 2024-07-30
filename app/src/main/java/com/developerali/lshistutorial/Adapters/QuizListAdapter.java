@@ -47,6 +47,10 @@ public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.ViewHo
             activity.startActivity(i);
         });
 
+        holder.itemView.setOnClickListener(v->{
+            holder.binding.playBtn.performClick();
+        });
+
     }
 
     @Override

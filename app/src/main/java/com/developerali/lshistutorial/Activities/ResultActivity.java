@@ -51,19 +51,19 @@ public class ResultActivity extends AppCompatActivity {
 
     public String readyText(String Reward){
 
-        String message ="আস্সালামুআলাইকুম,\n" + "\n" +
-                "My Life Qur'an পরিচালিত *কুইজ প্রতিযোগিতায়* অংশগ্রহণ করেছিলাম। আলহামদুলিল্লাহ সফল হয়েছি। এই কুইজ থেকে *" + Reward+" Reward* পেয়েছি।\n" +
+        String message ="Hii,\n" + "\n" +
+                "LS His Tutorial পরিচালিত *কুইজ প্রতিযোগিতায়* অংশগ্রহণ করেছিলাম। এই কুইজ থেকে *" + Reward+" Reward* পেয়েছি।\n" +
                 "\n" +
-                "আমার মতো তুমিও *কুইজ খেলে এবং হাদিস কোরান পড়ে* অনেক পুরস্কার ও reward পেতে পারো....\n" +
+                "আমার মতো তুমিও *কুইজ খেলে* অনেক পুরস্কার ও reward পেতে পারো....\n" +
                 "\n" +
-                "এক্ষুনি My Life Qura'n app ডাউনলোড করো। \n" +
+                "এক্ষুনি LS His Tutorial app ডাউনলোড করো। \n" +
 
                 "----------------------------\n" + "\n" +
                 "       Presented By\n" +
-                "       *My Life Qur'an*\n" +
+                "       *LS His Tutorial*\n" +
                 "\n" +
                 "Download App From PlayStore\n"+
-                "https://play.google.com/store/apps/details?id=com.developerali.mylifequran";
+                "https://play.google.com/store/apps/details?id=com.developerali.lshistutorial";
         return message;
     }
 }

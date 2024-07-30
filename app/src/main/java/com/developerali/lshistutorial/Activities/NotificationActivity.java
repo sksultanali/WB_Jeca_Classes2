@@ -69,7 +69,14 @@ public class NotificationActivity extends AppCompatActivity {
                             binding.progressBar2.setVisibility(View.GONE);
                             binding.noData.setVisibility(View.GONE);
 
+                            if (arrayList.isEmpty()){
+                                binding.clear.setVisibility(View.GONE);
+                            }else {
+                                binding.clear.setVisibility(View.VISIBLE);
+                            }
+
                         }else {
+                            binding.clear.setVisibility(View.GONE);
                             binding.progressBar2.setVisibility(View.GONE);
                             binding.noData.setVisibility(View.VISIBLE);
                         }
@@ -97,7 +104,5 @@ public class NotificationActivity extends AppCompatActivity {
                         }
                     });
         });
-
-
     }
 }

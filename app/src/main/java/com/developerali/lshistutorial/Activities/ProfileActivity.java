@@ -45,6 +45,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.rpc.Help;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -113,7 +114,8 @@ public class ProfileActivity extends AppCompatActivity {
                         }
                         break;
                     case 1:
-                        Toast.makeText(activity, "coming soon...", Toast.LENGTH_SHORT).show();
+                        Helper.showLoginDialog(ProfileActivity.this, "Not Eligible",
+                                "Your profile is not eligible for asking question for now. We will notify you soon.\nThank you..!");
                         break;
                     case 2:
                         Intent n = new Intent(ProfileActivity.this, QuizListActivity.class);
@@ -177,10 +179,15 @@ public class ProfileActivity extends AppCompatActivity {
                         }
                         break;
                     case 10:
-                        String message = "Hi, I have seen the LS His Tutorial app and have some query. Should we talk now? ";
-                        Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse("http://api.whatsapp.com/send?phone=" + "+91" + "8967254087" + "&text=" + message));
-                        startActivity(i);
+                       try {
+                           String message = "Hi, I have seen the LS His Tutorial app and have some query. Should we talk now? ";
+                           Intent i = new Intent(Intent.ACTION_VIEW);
+                           i.setData(Uri.parse("http://api.whatsapp.com/send?phone=" + "+91" + "8967254087" + "&text=" + message));
+                           startActivity(i);
+                       }catch (Exception e){
+                           Helper.showLoginDialog(ProfileActivity.this, "Only Whatsapp",
+                                   "We are available only on whatsapp now. Please make sure you have installed whatsapp to conntact us.\nThank you..!");
+                       }
                         break;
                 }
             }
