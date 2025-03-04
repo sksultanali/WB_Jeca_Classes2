@@ -5,16 +5,16 @@ plugins {
 }
 
 android {
-    namespace 'com.developerali.lshistutorial'
+    namespace 'com.developerali.wbjecaclasses'
     compileSdk 34
 
 
     defaultConfig {
-        applicationId "com.developerali.lshistutorial"
+        applicationId "com.developerali.wbjecaclasses"
         minSdk 24
         targetSdk 34
-        versionCode 17   //17
-        versionName "2.1.5"  //2.1.5
+        versionCode 1
+        versionName "1.0.0" 
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -66,14 +66,15 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+    implementation 'androidx.browser:browser:1.8.0'
 
 
     //other dependencies
-    implementation 'com.github.smarteist:autoimageslider:1.4.0'
+//    implementation 'com.github.smarteist:autoimageslider:1.4.0'
 
     implementation 'com.github.marlonlom:timeago:4.0.3'
-    implementation 'com.github.jd-alexander:LikeButton:0.2.3'
-    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+    implementation 'com.github.jd-alexander:likebutton:0.2.3'
+//    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 
     //cart and wishList
     implementation 'com.github.sharish:ShimmerRecyclerView:v1.3'

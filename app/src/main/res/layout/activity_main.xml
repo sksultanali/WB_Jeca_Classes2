@@ -9,7 +9,6 @@
     android:orientation="vertical"
     android:background="@color/gray"
     tools:context=".MainActivity">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -29,7 +28,9 @@
                 android:id="@+id/myImg"
                 android:layout_width="@dimen/_30mdp"
                 android:layout_height="@dimen/_30mdp"
-                android:src="@drawable/logo"/>
+                app:civ_border_width="@dimen/_1mdp"
+                app:civ_border_color="@color/white"
+                android:src="@drawable/logo_jeca"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -38,7 +39,7 @@
                 android:textStyle="bold"
                 android:layout_gravity="center"
                 android:textSize="@dimen/_14font_mdp"
-                android:text="LS His Tutorial"/>
+                android:text="@string/app_name"/>
         </LinearLayout>
 
         <TextView
@@ -59,7 +60,6 @@
             android:textColor="@color/black"
             android:textAllCaps="true"/>
     </LinearLayout>
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,24 +69,43 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.denzcoskun.imageslider.ImageSlider
-                android:id="@+id/image_slider"
-                android:layout_width="wrap_content"
-                android:layout_height="120dp"
-                android:layout_marginTop="@dimen/_10mdp"
-                android:paddingLeft="@dimen/_10mdp"
-                android:paddingRight="@dimen/_10mdp"
-                android:elevation="@dimen/_5mdp"
-                app:iss_auto_cycle="true"
-                app:iss_corner_radius="20"
-                app:iss_delay="0"
-                app:iss_error_image="@drawable/book_placeholder"
-                app:iss_period="2000"
-                app:iss_placeholder="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view3"
-                tools:ignore="MissingConstraints" />
+<!--            <com.denzcoskun.imageslider.ImageSlider-->
+<!--                android:id="@+id/image_slider"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="120dp"-->
+<!--                android:layout_marginTop="@dimen/_10mdp"-->
+<!--                android:paddingLeft="@dimen/_10mdp"-->
+<!--                android:paddingRight="@dimen/_10mdp"-->
+<!--                android:elevation="@dimen/_5mdp"-->
+<!--                app:iss_auto_cycle="true"-->
+<!--                app:iss_corner_radius="20"-->
+<!--                app:iss_delay="0"-->
+<!--                app:iss_error_image="@drawable/book_placeholder"-->
+<!--                app:iss_period="2000"-->
+<!--                app:iss_placeholder="@color/black"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/view3"-->
+<!--                tools:ignore="MissingConstraints" />-->
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/bannerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5mdp"
+                app:cardCornerRadius="@dimen/_10mdp"
+                android:visibility="gone"
+                android:elevation="@dimen/_1mdp">
+                <ViewFlipper
+                    android:id="@+id/viewFlipper"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100mdp"
+                    android:autoStart="true"
+                    android:flipInterval="5000"
+                    android:inAnimation="@android:anim/fade_in"
+                    android:outAnimation="@android:anim/fade_out"
+                    android:layout_centerInParent="true" />
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -181,16 +200,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <GridView
-                    android:id="@+id/tools_list"
+<!--                <GridView-->
+<!--                    android:id="@+id/tools_list"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:numColumns="4"-->
+<!--                    android:verticalSpacing="@dimen/_5mdp"-->
+<!--                    android:horizontalSpacing="@dimen/_5mdp"-->
+<!--                    android:layout_marginStart="@dimen/_10mdp"-->
+<!--                    android:layout_marginEnd="@dimen/_10mdp"-->
+<!--                    tools:listitem="@layout/sample_tools"/>-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rec"
+                    tools:listitem="@layout/sample_tools"
+                    tools:itemCount="10"
+                    app:spanCount="4"
+                    android:overScrollMode="never"
+                    android:layout_marginEnd="@dimen/_5mdp"
+                    android:layout_marginStart="@dimen/_5mdp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:numColumns="4"
-                    android:verticalSpacing="@dimen/_5mdp"
-                    android:horizontalSpacing="@dimen/_5mdp"
-                    android:layout_marginStart="@dimen/_10mdp"
-                    android:layout_marginEnd="@dimen/_10mdp"
-                    tools:listitem="@layout/sample_tools"/>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
             <LinearLayout

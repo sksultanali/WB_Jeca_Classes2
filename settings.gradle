@@ -1,6 +1,7 @@
 pluginManagement {
     repositories {
         google()
+        jcenter()
         mavenCentral()
         gradlePluginPortal()
 
@@ -12,11 +13,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        jcenter()
-
+        gradlePluginPortal()
         maven { url 'https://jitpack.io' }
+        maven { url "https://repository.liferay.com/nexus/content/repositories/public/" }
     }
 }
 
-rootProject.name = "LS His Tutorial"
+rootProject.name = "WB Jeca Classes"
 include ':app'

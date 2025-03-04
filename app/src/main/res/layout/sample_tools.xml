@@ -9,10 +9,13 @@
     android:background="@drawable/back_border_gray"
     android:orientation="vertical">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/toolImg"
         android:layout_width="@dimen/_35mdp"
-        android:layout_height="@dimen/_35mdp"
+        android:layout_height=
+
+
+            "@dimen/_35mdp"
         android:visibility="visible"
         android:src="@color/icon_color"/>
     <TextView
@@ -20,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="12sp"
-        android:textColor="@color/black"
+        android:minLines="2"
+        android:textSize="@dimen/_11font_mdp"
         android:text="RoomName"/>
 </LinearLayout>
