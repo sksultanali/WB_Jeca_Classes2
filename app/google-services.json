@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "407716706236",
+    "project_id": "wb-jeca-classes",
+    "storage_bucket": "wb-jeca-classes.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:407716706236:android:e1fa8e7d027365ebe9ddb9",
+        "android_client_info": {
+          "package_name": "com.developerali.wbjecaclasses"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqA7OAhJmlrr4xooYFCe15kRXp7Ups3IY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
