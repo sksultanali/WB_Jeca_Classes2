@@ -34,10 +34,8 @@ The official Android application for West Bengal JECA aspirants, providing compl
 
 ### For Technical Support & Collaboration:
 📧 **Email**: [work.sultanali@gmail.com](mailto:work.sultanali@gmail.com)  
-📞 **Phone**: [+91 8967 2540 87](tel:+918967254087)  
+📞 **Phone**: [+91 8967 25 4087](tel:+918967254087)  
 
 ### Business Inquiries:
-🌐 **Website**: [www.wbjecaclasses.com](https://www.wbjecaclasses.com)  
-💼 **LinkedIn**: [Developer Ali](https://linkedin.com/in/developer-ali)  
-
-### Office Address:
+🌐 **Website**: [www.developerali.in](https://developerali.in/)  
+💼 **LinkedIn**: [Sk Sultan Ali](https://in.linkedin.com/in/sk-sultan-ali-b35ab41b6)  
