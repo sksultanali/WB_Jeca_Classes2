@@ -25,11 +25,12 @@ The official Android application for West Bengal JECA aspirants, providing compl
 [<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="250">](https://play.google.com/store/apps/details?id=com.developerali.wbjecaclasses)
 
 ## Technical Stack
-- 💻 Kotlin (Primary language)
+- 💻 JAVA (Primary language)
 - 🏗 MVVM Architecture
 - 🔥 Firebase (Authentication, Database, Storage)
+- 👨🏻‍💻 MySqli & PHP for API
 - 📊 MPAndroidChart (For analytics)
-- 📹 ExoPlayer (For video lectures)
+- 📹 YouTubeVideoPlayer (For video lectures)
 
 ## Contact Information
 
