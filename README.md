@@ -17,7 +17,7 @@ The official Android application for West Bengal JECA aspirants, providing compl
 
 | FAQs | Study Materials | Mock Test | PY Questions |
 |-------------|-----------------|-----------|-----------|
-| ![Home](https://i.ibb.co/zWMH6CgG/screen1.webp) | ![Materials](https://github.com/developerali/wbjecaclasses/raw/main/screenshots/screen2.png) | ![Test](https://github.com/developerali/wbjecaclasses/raw/main/screenshots/screen3.png) | ![PY Ques](https://ibb.co/5WfyDJXP) |
+| ![Home](https://i.ibb.co/zWMH6CgG/screen1.webp) | ![Materials](https://github.com/developerali/wbjecaclasses/raw/main/screenshots/screen2.png) | ![Test](https://github.com/developerali/wbjecaclasses/raw/main/screenshots/screen3.png) | ![PY Ques](https://i.ibb.co/7J65c0xq/screen2.webp) |
 
 ## Download Options
 [<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="250">](https://play.google.com/store/apps/details?id=com.developerali.wbjecaclasses)
