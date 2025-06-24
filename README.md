@@ -3,7 +3,7 @@
 [![Play Store](https://img.shields.io/badge/Download-Play_Store-brightgreen)](https://play.google.com/store/apps/details?id=com.developerali.wbjecaclasses)
 [![GitHub Release](https://img.shields.io/github/v/release/developerali/wbjecaclasses)](https://github.com/developerali/wbjecaclasses/releases/latest)
 
-![App Banner](https://github.com/developerali/wbjecaclasses/raw/logo.webp)
+![App Banner](https://github.com/developerali/wbjecaclasses/app/src/main/res/raw/screen1.webp)
 
 The official Android application for West Bengal JECA aspirants, providing complete exam preparation resources.
 
